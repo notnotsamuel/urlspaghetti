@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% if visits >= 1 %}
+        <script>
+            window.location = '{{ original_url }}';
+        </script>
+    {% endif %}
+<html>
+<head>
+    <title>Shortened URL</title>
+</head>
+<body style="font-family: monospace;">
+    <div style="margin: 0 auto;">
+        <h1>Shortened URL</h1>
+        <p>Original URL: {{ original_url }}</p>
+        <p>Short URL: <a href="{{ short_url }}">{{ short_url }}</a></p>
+        <button onclick="navigator.clipboard.writeText('nuage.sh/s/{{ short_url }}')">Copy</button>
+    </div>
+
+
+</body>
+</html>
