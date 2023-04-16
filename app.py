@@ -74,9 +74,9 @@ def shortened(short_url):
         cursor.execute("UPDATE urls SET visits = ? WHERE short = ?", (visits + 1, short_url))
     return render_template("shortened.html", short_url=short_url, original_url=original_url, visits=visits)
 
-if __name__ == "__main__":
-    # if file data/urls.db doesn't exist, create it
-    if not os.path.exists(app.config['DATABASE_URI']):
-        # touch data/urls.db 
-        open(app.config['DATABASE_URI'], 'a').close()
-    init_db()
+
+if not os.path.exists(app.config['DATABASE_URI']):
+    # touch data/urls.db 
+    open(app.config['DATABASE_URI'], 'a').close()
+    print("Database file created")
+init_db()
