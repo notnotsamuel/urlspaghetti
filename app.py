@@ -69,9 +69,11 @@ def index():
 def shortened(short_url):
     original_url, visits = retrieve_data(short_url)
     # update the visits
-    with connect_db() as conn:
-        cursor = conn.cursor()
-        cursor.execute("UPDATE urls SET visits = ? WHERE short = ?", (visits + 1, short_url))
+    if original_url is not None:
+        with connect_db() as conn:
+            cursor = conn.cursor()
+            cursor.execute("UPDATE urls SET visits = ? WHERE short = ?", (visits + 1, short_url))
+
     return render_template("shortened.html", short_url=short_url, original_url=original_url, visits=visits)
 
 
