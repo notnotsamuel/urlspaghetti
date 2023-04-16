@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
+import os
 import random
 import string
 from time import sleep
@@ -74,5 +75,8 @@ def shortened(short_url):
     return render_template("shortened.html", short_url=short_url, original_url=original_url, visits=visits)
 
 if __name__ == "__main__":
+    # if file data/urls.db doesn't exist, create it
+    if not os.path.exists(app.config['DATABASE_URI']):
+        # touch data/urls.db 
+        open(app.config['DATABASE_URI'], 'a').close()
     init_db()
-    app.run(host='0.0.0.0', port=5000)
