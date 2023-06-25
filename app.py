@@ -78,7 +78,6 @@ def shortened(short_url):
 
 
 if not os.path.exists(app.config['DATABASE_URI']):
-    # touch data/urls.db 
     open(app.config['DATABASE_URI'], 'a').close()
     print("Database file created")
 init_db()
